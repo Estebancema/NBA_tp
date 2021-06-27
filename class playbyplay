@@ -1,0 +1,15 @@
+class PlayByPlay:
+    def __init__(self,id_team = id_1,opponent_team=id_2,season = '2019-20',league = '00',game_id = choosen_game_id):
+        self.id_team = id_team
+        self.opponent_team = opponent_team
+        self.season = season
+        self.league = league
+        self.game_id = game_id
+    def playbyplay(self):
+        from nba_api.stats.endpoints import boxscoretraditionalv2
+        box_score_traditional = boxscoretraditionalv2.BoxScoreTraditionalV2(end_period='0',
+                                                                            game_id = self.game_id,
+                                                                            start_period='0',
+                                                                            )
+        box_score_traditional_df = box_score_traditional.get_data_frames()[0]
+        print(box_score_traditional_df)
